@@ -12,6 +12,7 @@ function App() {
   const [showData, setShowData] = useState(false);
 
   const getUsers = async () => {
+    setShowData(false);
     setIsLoading(true);
     const listUsers = await fetchUsers(username);
     setUsers(listUsers);
@@ -56,29 +57,31 @@ function App() {
           </button>
         )}
       </div>
-      <div id="users-section">
-        {users.length > 0 &&
-          users.map(({ login: githubUsername, repositories, id: userId }) => (
-            <Dropdown key={userId} label={githubUsername}>
-              {repositories.length > 0 &&
-                repositories.map(
-                  ({
-                    id,
-                    name: title,
-                    description,
-                    stargazers_count: stargazersCount,
-                  }) => (
-                    <RepositoryCard
-                      key={id}
-                      title={title}
-                      description={description}
-                      stargazerCount={stargazersCount}
-                    />
-                  )
-                )}
-            </Dropdown>
-          ))}
-      </div>
+      {showData && (
+        <div id="users-section">
+          {users.length > 0 &&
+            users.map(({ login: githubUsername, repositories, id: userId }) => (
+              <Dropdown key={userId} label={githubUsername}>
+                {repositories.length > 0 &&
+                  repositories.map(
+                    ({
+                      id,
+                      name: title,
+                      description,
+                      stargazers_count: stargazersCount,
+                    }) => (
+                      <RepositoryCard
+                        key={id}
+                        title={title}
+                        description={description}
+                        stargazerCount={stargazersCount}
+                      />
+                    )
+                  )}
+              </Dropdown>
+            ))}
+        </div>
+      )}
     </div>
   );
 }

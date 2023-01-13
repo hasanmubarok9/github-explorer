@@ -1,3 +1,5 @@
+import styles from "./RepositoryCard.module.css";
+
 type RepositoryCardPropsType = {
   title: string;
   description: string;
@@ -9,10 +11,12 @@ const RepositoryCard = ({
   stargazerCount,
 }: RepositoryCardPropsType) => {
   return (
-    <div className="repository-card">
-      <h5>{title}</h5>
+    <div className={styles.repositoryCard}>
+      <div className={styles.header}>
+        <h5>{title}</h5>
+        <p>{stargazerCount} bintang</p>
+      </div>
       <p>{description}</p>
-      <p>{stargazerCount} bintang</p>
     </div>
   );
 };

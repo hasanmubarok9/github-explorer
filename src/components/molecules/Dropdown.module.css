@@ -1,0 +1,10 @@
+.dropdown:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.label {
+  background-color: gray;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+}
