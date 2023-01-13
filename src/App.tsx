@@ -39,7 +39,7 @@ function App() {
         }}
       >
         <div className="title">
-          <h1>Github Search</h1>
+          <h1>Github Explorer</h1>
         </div>
         <input
           type="text"

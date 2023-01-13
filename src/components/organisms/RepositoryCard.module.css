@@ -1,10 +1,9 @@
 .repositoryCard {
+  margin-top: 1rem;
   padding: 1rem 2rem;
-  background-color: var(--gray);
+  background-color: var(--gray-dark);
 }
-.repositoryCard:not(last-child) {
-  margin-bottom: 1rem;
-}
+
 .header {
   display: flex;
   align-items: center;
@@ -20,11 +19,15 @@
 }
 
 @media only screen and (max-width: 640px) {
-    .repositoryCard h5 {
-      font-size: 1rem;
-    }
-    
-    .repositoryCard p {
-      font-size: 0.75rem;
-    }
+  .repositoryCard {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  .repositoryCard h5 {
+    font-size: 1rem;
+  }
+
+  .repositoryCard p {
+    font-size: 0.75rem;
+  }
 }
