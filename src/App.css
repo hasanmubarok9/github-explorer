@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray: #f6f8fa;
+  --border-gray: #d0d7de;
+  --blue: #218bff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
+  position: relative;
+}
+
+
+#search-bar {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#search-bar .title {
+  font-size: 2.25rem;
+}
+#search-bar .title h1 {
+  margin: 24px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+#search-bar input {
+  background-color: var(--gray);
+  padding: 16px 24px;
+  border: 1px solid var(--border-gray);
+  border-radius: 6px;
+  min-width: 500px;
+  font-size: 16px;
+}
+#search-bar input:focus,
+#search-bar input:focus-visible {
+  background-color: var(--white);
+  border-color: var(--black);
+}
+#search-bar button {
+  background-color: var(--blue);
+  border-radius: 4px;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: none;
+  color: var(--white);
+  min-width: 200px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+@media only screen and (max-width: 640px) {
+  #search-bar .title {
+    font-size: 1rem;
   }
-  to {
-    transform: rotate(360deg);
+  #search-bar input {
+    font-size: 12px;
+    min-width: 300px;
+    padding: 10px 12px;
   }
+  #search-bar button {
+    font-size: 12px;
+    width: 100%;
+    padding: 10px 12px;
+
+  }
+
 }
