@@ -1,4 +1,5 @@
 import { PropsWithChildren, useState } from "react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import styles from "./Dropdown.module.css";
 
 type DropdownPropsType = {
@@ -17,6 +18,7 @@ const Dropdown = ({
         onClick={() => setOpen((openState) => !openState)}
       >
         <p>{label}</p>
+        {open ? <FaChevronUp /> : <FaChevronDown />}
       </div>
       {open && <div>{children}</div>}
     </div>

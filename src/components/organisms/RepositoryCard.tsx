@@ -1,3 +1,4 @@
+import { FaStar } from "react-icons/fa";
 import styles from "./RepositoryCard.module.css";
 
 type RepositoryCardPropsType = {
@@ -14,7 +15,10 @@ const RepositoryCard = ({
     <div className={styles.repositoryCard}>
       <div className={styles.header}>
         <h5>{title}</h5>
-        <p>{stargazerCount} bintang</p>
+        <div className={styles.stargazerCount}>
+          <p>{stargazerCount}</p>
+          <FaStar />
+        </div>
       </div>
       <p>{description}</p>
     </div>

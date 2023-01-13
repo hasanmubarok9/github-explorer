@@ -1,6 +1,6 @@
 .repositoryCard {
   margin-top: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: var(--gray-dark);
 }
 
@@ -16,6 +16,15 @@
 
 .repositoryCard p {
   font-size: 1rem;
+}
+
+.stargazerCount {
+  display: flex;
+  align-items: center;
+}
+
+.stargazerCount p {
+  margin-right: 4px;
 }
 
 @media only screen and (max-width: 640px) {
