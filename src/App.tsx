@@ -1,24 +1,54 @@
-import { useState, type KeyboardEventHandler } from "react";
+import { useEffect, useState, type KeyboardEventHandler } from "react";
 import { type UserDataType, fetchUsers } from "./modules/users/usersAPI";
+import { isErrorWithMessage } from "./modules/helper";
 import Loading from "./components/atoms/Loading";
 import "./App.css";
 import Dropdown from "./components/molecules/Dropdown";
 import RepositoryCard from "./components/organisms/RepositoryCard";
+import Snackbar, { type SnackbarPropsType } from "./components/atoms/Snackbar";
 
 function App() {
   const [username, setUsername] = useState("");
   const [users, setUsers] = useState<UserDataType[] | never[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showData, setShowData] = useState(false);
+  const [snackbar, setSnackbar] = useState<
+    SnackbarPropsType & { show: boolean }
+  >({
+    variant: "success",
+    message: "",
+    show: false,
+  });
 
   const getUsers = async () => {
     setShowData(false);
     setIsLoading(true);
-    const listUsers = await fetchUsers(username);
-    setUsers(listUsers);
+    const result = await fetchUsers(username);
+    if (isErrorWithMessage(result)) {
+      setSnackbar({
+        variant: "error",
+        message: result.message,
+        show: true,
+      });
+    } else {
+      setUsers(result);
+      setShowData(true);
+    }
     setIsLoading(false);
-    setShowData(true);
   };
+
+  useEffect(() => {
+    if (snackbar.show) {
+      setTimeout(() => {
+        setShowData(false);
+        setSnackbar({
+          variant: "success",
+          message: "",
+          show: false,
+        });
+      }, 2000);
+    }
+  }, [snackbar.show]);
 
   // handle press enter key
   const handlePress: KeyboardEventHandler<HTMLInputElement> | undefined = (
@@ -59,7 +89,7 @@ function App() {
       </div>
       {showData && (
         <div id="users-section">
-          {users.length > 0 &&
+          {users.length > 0 ? (
             users.map(({ login: githubUsername, repositories, id: userId }) => (
               <Dropdown key={userId} label={githubUsername}>
                 {repositories.length > 0 &&
@@ -79,8 +109,14 @@ function App() {
                     )
                   )}
               </Dropdown>
-            ))}
+            ))
+          ) : (
+            <div className="not-found">Data Not found :-(</div>
+          )}
         </div>
+      )}
+      {snackbar.show && (
+        <Snackbar variant={snackbar.variant} message={snackbar.message} />
       )}
     </div>
   );

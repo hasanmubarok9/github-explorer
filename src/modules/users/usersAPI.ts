@@ -2,6 +2,7 @@ import {
   type RepositoryDataType,
   fetchRepositories,
 } from "../repositories/repositoriesAPI";
+import { ErrorWithMessageType, getErrorMessage } from "../helper";
 
 export type UserDataType = {
   id: number;
@@ -17,23 +18,30 @@ export type UserDataResponseType = {
 
 export const fetchUsers = async (
   username: string
-): Promise<Array<UserDataType>> => {
-  const response = await fetch(
-    `https://api.github.com/search/users?q=${username}`
-  );
-  if (response.ok) {
-    const { items, total_count: totalCount }: UserDataResponseType =
-      await response.json();
-    const total = totalCount < 5 ? totalCount : 5;
-    const users: Array<UserDataType> = [];
-    for (let i = 0; i < total; i++) {
-      const repositories = await fetchRepositories(items[i].login);
-      if (repositories) {
-        users.push({ ...items[i], repositories });
+): Promise<Array<UserDataType> | ErrorWithMessageType> => {
+  try {
+    const response = await fetch(
+      `https://api.github.com/search/users?q=${username}`
+    );
+    if (response.ok) {
+      const { items, total_count: totalCount }: UserDataResponseType =
+        await response.json();
+      const total = totalCount < 5 ? totalCount : 5;
+      const users: Array<UserDataType> = [];
+      for (let i = 0; i < total; i++) {
+        const repositories = await fetchRepositories(items[i].login);
+        if (repositories) {
+          users.push({ ...items[i], repositories });
+        }
       }
+      return users;
+    } else {
+      throw new Error("Something went wrong..");
     }
-    return users;
-  } else {
-    return Promise.reject({ message: "an unknown error occured" });
+  } catch (error) {
+    return {
+      isInstanceOfError: true,
+      message: getErrorMessage(error),
+    };
   }
 };
