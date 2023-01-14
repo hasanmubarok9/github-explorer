@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Github Repositories Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Input github username to search up to 5 users on github and xorresponding repositories
 
 ## Available Scripts
 
