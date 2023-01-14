@@ -1,25 +1,10 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-:root {
-  --white: #fff;
-  --black: #000;
-  --gray-dark: #d0d7de;
-  --gray-light: #eaeef2;
-  --border-gray: #d0d7de;
-  --blue: #218bff;
-}
-
 .container {
   min-height: 100vh;
   position: relative;
   overflow: auto;
 }
 
-#search-bar {
+.searchBar {
   bottom: 50%;
   left: 50%;
   display: flex;
@@ -30,14 +15,14 @@
   margin: 0 auto;
 }
 
-#search-bar .title {
+.title {
   font-size: 2.25rem;
 }
-#search-bar .title h1 {
+.title h1 {
   margin: 24px 0;
 }
 
-#search-bar input {
+.searchBar input {
   background-color: var(--gray);
   padding: 16px 24px;
   border: 1px solid var(--border-gray);
@@ -46,12 +31,12 @@
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
 }
-#search-bar input:focus,
-#search-bar input:focus-visible {
+.searchBar input:focus,
+.searchBar input:focus-visible {
   background-color: var(--white);
   border-color: var(--black);
 }
-#search-bar button {
+.searchBar button {
   background-color: var(--blue);
   border-radius: 1rem;
   padding: 1rem;
@@ -61,19 +46,19 @@
   cursor: pointer;
   font-size: 1.5rem;
 }
-#search-bar button:disabled {
+.searchBar button:disabled {
   background-color: rgba(175, 184, 193, 0.2);
   color: var(--black);
 }
 
-#users-section {
+.userSection {
   padding: 32px 0;
   overflow: auto;
   max-width: min(768px, 100vw - 64px);
   margin: 0 auto;
 }
 
-#users-section .not-found {
+.notFound {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,21 +68,21 @@
 }
 
 @media only screen and (max-width: 640px) {
-  #search-bar .title {
+  .searchBar .title {
     font-size: 1rem;
   }
-  #search-bar input {
+  .searchBar input {
     font-size: 1rem;
     width: 100%;
     min-width: 300px;
     padding: 0.75rem 1rem;
   }
-  #search-bar button {
+  .searchBar button {
     font-size: 1rem;
     width: 100%;
     padding: 0.75rem 1rem;
   }
-  #users-section .not-found {
+  .notFound {
     padding: 64px;
     font-size: 1.5rem;
     font-weight: 400;

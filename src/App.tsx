@@ -2,7 +2,7 @@ import { useEffect, useState, type KeyboardEventHandler } from "react";
 import { type UserDataType, fetchUsers } from "./modules/users/usersAPI";
 import { isErrorWithMessage } from "./modules/helper";
 import Loading from "./components/atoms/Loading";
-import "./App.css";
+import styles from "./App.module.css";
 import Dropdown from "./components/molecules/Dropdown";
 import RepositoryCard from "./components/organisms/RepositoryCard";
 import Snackbar, { type SnackbarPropsType } from "./components/atoms/Snackbar";
@@ -60,15 +60,15 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <div
-        id="search-bar"
+        className={styles.searchBar}
         style={{
           position: showData ? "static" : "absolute",
           transform: showData ? "none" : "translate(-50%, 25%)",
         }}
       >
-        <div className="title">
+        <div className={styles.title}>
           <h1>Github Explorer</h1>
         </div>
         <input
@@ -89,7 +89,7 @@ function App() {
         )}
       </div>
       {showData && (
-        <div id="users-section">
+        <div className={styles.userSection}>
           {users.length > 0 ? (
             users.map(({ login: githubUsername, repositories, id: userId }) => (
               <Dropdown key={userId} label={githubUsername}>
@@ -112,7 +112,7 @@ function App() {
               </Dropdown>
             ))
           ) : (
-            <div className="not-found">Data Not found :-(</div>
+            <div className={styles.notFound}>Data Not found :-(</div>
           )}
         </div>
       )}
