@@ -9,6 +9,7 @@ const Snackbar = ({ variant, message }: SnackbarPropsType) => {
     <div
       className={styles.snackbar}
       style={{ backgroundColor: variant === "error" ? "red" : "green" }}
+      role="alert"
     >
       <p>{message}</p>
     </div>

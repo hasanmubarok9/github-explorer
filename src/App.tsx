@@ -74,6 +74,7 @@ function App() {
         <input
           type="text"
           placeholder="Enter Username"
+          aria-label="username-input"
           name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}

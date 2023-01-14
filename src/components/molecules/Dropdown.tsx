@@ -12,10 +12,11 @@ const Dropdown = ({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} role="listbox">
       <div
         className={styles.label}
         onClick={() => setOpen((openState) => !openState)}
+        data-testid="dropdown-label"
       >
         <p>{label}</p>
         {open ? <FaChevronUp /> : <FaChevronDown />}
