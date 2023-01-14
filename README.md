@@ -15,7 +15,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Launches the test runner in the interactive watch mode.
 
-### `npm test -- --coverage`
+### `npm test -- --coverage --watchAll`
 
 Launches the test runner in the interactive watch mode and display tests coverage.
 
